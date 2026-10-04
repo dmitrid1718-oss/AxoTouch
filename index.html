@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AxoTouch.me — Meet before you see</title>
+  <meta name="description" content="AxoTouch is a real human connection experiment. Meet before you see." />
+  <style>
+    :root{
+      --bg:#0a0a0a; --fg:#f3f0e8; --muted:#aaa59a; --line:rgba(255,255,255,.16);
+      --panel:rgba(8,8,8,.58); --accent:#d8b06b;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{min-height:100vh}
+    .hero{
+      min-height:100svh; position:relative; display:flex; align-items:flex-end; overflow:hidden;
+      background:
+        radial-gradient(circle at 68% 46%, rgba(216,176,107,.22), transparent 9%),
+        radial-gradient(circle at 72% 44%, rgba(255,232,177,.08), transparent 24%),
+        linear-gradient(120deg,#070707 0%,#0c0b0a 48%,#11100e 100%);
+    }
+    .field{position:absolute;inset:0;overflow:hidden}
+    .field:before{
+      content:"";position:absolute;right:-8vw;top:8vh;width:62vw;height:62vw;max-width:760px;max-height:760px;
+      border-radius:50%;background:radial-gradient(circle,rgba(224,187,117,.28) 0 1px,transparent 2px);
+      background-size:18px 18px;filter:blur(.2px);opacity:.72;mask-image:radial-gradient(circle,#000 0 45%,transparent 72%);
+    }
+    .hand{
+      position:absolute;right:-7vw;bottom:5vh;width:min(58vw,760px);height:min(44vw,560px);
+      transform:rotate(-8deg);opacity:.92;filter:drop-shadow(0 18px 70px rgba(0,0,0,.6));
+    }
+    .hand:before{
+      content:"";position:absolute;right:0;bottom:5%;width:78%;height:42%;border-radius:54% 18% 18% 46% / 70% 48% 42% 44%;
+      background:linear-gradient(160deg,#c9ab91,#8d735f 42%,#5b4639 74%,#2d211c);
+    }
+    .hand:after{
+      content:"";position:absolute;left:4%;top:3%;width:80%;height:18%;border-radius:999px;
+      background:linear-gradient(180deg,#d0b49a,#8f735e 58%,#4d392f);transform:rotate(-7deg);
+      box-shadow:0 14px 30px rgba(0,0,0,.28);
+    }
+    .touch{
+      position:absolute;right:32%;top:42%;width:14px;height:14px;border-radius:50%;background:#f4d28d;
+      box-shadow:0 0 14px #f4d28d,0 0 42px #d5a95a,0 0 90px rgba(213,169,90,.6);
+    }
+    .content{position:relative;z-index:2;width:min(760px,calc(100% - 40px));margin:0 0 8vh max(20px,6vw);padding:30px 0}
+    .brand{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.03em;margin-bottom:34px}
+    .brand sup{font-size:.38em;vertical-align:top;margin-left:3px}
+    .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    h1{font-size:clamp(44px,7vw,92px);line-height:.93;letter-spacing:-.055em;margin:0 0 22px;max-width:720px}
+    .lead{font-size:clamp(18px,2vw,25px);line-height:1.42;max-width:620px;color:#e7e1d6;margin:0 0 28px}
+    .sub{max-width:590px;font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 26px}
+    .signup{display:flex;gap:10px;max-width:520px}
+    input{min-width:0;flex:1;background:rgba(0,0,0,.35);color:white;border:1px solid var(--line);padding:15px 16px;border-radius:999px;font-size:16px;outline:none}
+    input:focus{border-color:rgba(216,176,107,.72);box-shadow:0 0 0 3px rgba(216,176,107,.08)}
+    button{border:0;border-radius:999px;padding:15px 20px;background:var(--fg);color:#111;font-weight:700;cursor:pointer;white-space:nowrap}
+    .micro{font-size:12px;color:#8f8a80;margin-top:10px}
+    .note{position:relative;padding:68px max(20px,6vw) 86px;background:#0e0e0e;border-top:1px solid #181818}
+    .note-inner{max-width:800px}
+    .note h2{font-size:28px;margin:0 0 18px}
+    .note p{color:#b9b3a8;line-height:1.65;font-size:14px}
+    footer{padding:26px max(20px,6vw);display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between;color:#777269;font-size:12px;border-top:1px solid #191919}
+    footer a{color:inherit;text-decoration:none}
+    .success{display:none;color:#ddd7cb;font-size:14px;padding-top:6px}
+    @media (max-width:720px){
+      .hero{align-items:flex-end}
+      .content{margin-bottom:4vh}
+      .hand{width:95vw;height:62vw;right:-26vw;bottom:26vh;opacity:.58}
+      .field:before{width:100vw;height:100vw;right:-34vw;top:9vh}
+      .touch{right:28%;top:39%}
+      .signup{flex-direction:column;align-items:stretch;max-width:360px}
+      button{width:100%}
+      h1{max-width:520px}
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <div class="field" aria-hidden="true"><div class="hand"></div><div class="touch"></div></div>
+    <section class="content">
+      <div class="brand">AxoTouch.me<sup>™</sup></div>
+      <div class="eyebrow">A real human connection experiment.</div>
+      <h1>Meet before you see.</h1>
+      <p class="lead">AxoTouch is a work in progress. We're assembling a small pilot team to explore it with us.</p>
+      <p class="sub">Interested? Leave your email. We'll contact a small group when we're ready to experiment.</p>
+      <form class="signup" action="mailto:hello@axotouch.me" method="post" enctype="text/plain" onsubmit="return submitInterest(event)">
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required />
+        <button type="submit">I'M CURIOUS</button>
+      </form>
+      <div class="success" id="success">Thanks. We'll keep it simple and contact you when we're ready.</div>
+      <div class="micro">No spam. No account. Just an invitation if and when we're ready.</div>
+    </section>
+  </main>
+
+  <section class="note" id="pilot-note">
+    <div class="note-inner">
+      <h2>Pilot note</h2>
+      <p>AxoTouch is an experimental project currently in development. Participation in any future pilot will be voluntary and intended for adults 18+.</p>
+      <p>The experiment explores new ways for people to interact while controlling how much information about themselves they choose to reveal. Identity, appearance, voice, and other personal details may remain private unless a participant chooses otherwise.</p>
+      <p>Participants will be expected to respect each other's boundaries and consent. Harassment, threats, coercion, non-consensual sexual behavior, or attempts to identify another participant without permission will not be acceptable. You will be able to leave an interaction at any time.</p>
+      <p>AxoTouch makes no promises about compatibility, relationships, outcomes, or what you may experience. No guarantees. Just an experiment between humans.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Useless Instruments<sup>™</sup></span>
+    <span>© 2026 Useless Instruments LLC</span>
+    <span><a href="mailto:hello@axotouch.me">hello@axotouch.me</a></span>
+  </footer>
+
+  <script>
+    function submitInterest(e){
+      const email = document.getElementById('email').value.trim();
+      if(!email) return true;
+      const subject = encodeURIComponent('AxoTouch pilot interest');
+      const body = encodeURIComponent('I am interested in the AxoTouch pilot.\n\nEmail: ' + email);
+      window.location.href = 'mailto:hello@axotouch.me?subject=' + subject + '&body=' + body;
+      document.getElementById('success').style.display = 'block';
+      return false;
+    }
+  </script>
+</body>
+</html>
